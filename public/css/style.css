@@ -1,5 +1,5 @@
 body {
-  background-image: url("background.jpg");
+  background-image: url(../img/background.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -28,28 +28,28 @@ body .navbar i {
 body .navbar .container {
   margin-left: 0;
 }
-body .configure-game-container .game-container {
+body .game-container {
   padding-top: 50px;
 }
-body .configure-game-container .game-container .question-container {
+body .game-container .question-container {
   background-color: rgba(11, 17, 43, 0.952);
   border: 5px solid #ccc;
   border-radius: 15px;
   padding: 30px;
 }
-body .configure-game-container .game-container .question-container .the-question-container {
+body .game-container .question-container .the-question-container {
   color: white;
   text-align: center;
 }
-body .configure-game-container .game-container .question-container .timer {
+body .game-container .question-container .timer {
   font-size: 50px;
   font-weight: 600;
   color: grey;
 }
-body .configure-game-container .game-container .question-container .answers-container {
+body .game-container .question-container .answers-container {
   margin: auto;
 }
-body .configure-game-container .game-container .question-container .answers-container .answer {
+body .game-container .question-container .answers-container .answer {
   color: white;
   text-align: center;
   padding: 30px;
@@ -59,23 +59,7 @@ body .configure-game-container .game-container .question-container .answers-cont
   border-radius: 25px;
   border: 2px solid #ccc;
 }
-body .configure-game-container .game-container .question-container .answers-container .answer:hover {
-  background-color: #255f8f;
-}
-body .configure-game-container .set-game-container {
-  padding-top: 50px;
-}
-body .configure-game-container .set-game-container label {
-  color: white;
-}
-body .configure-game-container .set-game-container .start-game-btn {
-  color: white;
-  background-color: #020e2e;
-  border: 2px solid #ccc;
-  font-size: 40px;
-  margin-top: 30px;
-}
-body .configure-game-container .set-game-container .start-game-btn:hover {
+body .game-container .question-container .answers-container .answer:hover {
   background-color: #255f8f;
 }
 
@@ -84,4 +68,4 @@ body .configure-game-container .set-game-container .start-game-btn:hover {
   font-family: "Maitree", serif;
 }
 
-/*# sourceMappingURL=public/style.css.map */
+/*# sourceMappingURL=public/css/style.css.map */
