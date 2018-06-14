@@ -2,49 +2,132 @@
 <html>
 
 <head>
-    <link href="bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
-    <title></title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Maitree" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <div class="page-header">
-                    <h1>Spacebook</h1>
+    <div class="background">
+
+        <nav class="navbar navbar-inverse navbar-dark bg-inverse navbar-expand-lg">
+
+            <!-- Brand/logo -->
+            <a class="navbar-brand" href="#">
+                <i class="far fa-question-circle"></i>
+                <strong>Trivia</strong>lation
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Disabled</a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+
+        <div class="container">
+
+            <div class="row  justify-content-center configure-game-container">
+                
+            </div>
+        </div>
+        <script id="set-game-template" type="text/x-handlebars-template">
+            <div class="col-10 col-md-7 set-game-container justify-content-center">
+                <label for="trivia_category">Select Category: </label>
+                <select name="trivia_category" class="form-control">
+                        {{#each ../catagory}}
+                        <option value="{{id}}">{{name}}</option>
+                        {{/each}}
+                </select>
+                <br>
+                <label for="trivia_difficulty">Select Difficulty: </label>
+                <select name="trivia_difficulty" class="form-control">
+                    <option value="any">Any Difficulty</option>
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+                <br>
+                <div class="row justify-content-center">
+                    <button class="btn start-game-btn">
+                        START GAME
+                    </button>
                 </div>
-                <div class="posts"></div>
-                <form class="post-form">
-                    <h3>Add a New Post</h3>
-                    <div class="form-group">
-                        <input class="form-control" type="text" id="postText" placeholder="Enter Post Text"/>
+            </div>
+        </script>
+        <script id="game-template" type="text/x-handlebars-template">
+              <div class="row justify-content-md-center game-container ">
+                <div class="col-xs-12">
+                    <div class="row justify-content-md-center">
+                        <div class="col-xs-8   question-container rounded shadow ">
+                            <div class="row the-question-container">
+                                <div class="col-12 ">
+                                    <div class="question-number">
+                                        <h4>6/10</h4>
+                                    </div>
+                                    <h2 class="question"> What vulnerability ranked #1 on the OWASP Top 10 in 2013?</h2>
+                                    <p class="timer">0:08</p>
+                                </div>
+                            </div>
+                            <div class="row answers-container">
+
+                                <div class=" col-sm-12 col-md-6">
+                                    <div class="answer  answer1 shadow">
+                                        cfvghj
+                                    </div>
+
+                                </div>
+                                <div class=" col-sm-12 col-md-6">
+                                    <div class="answer  answer2 shadow">
+                                        xdfgh
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class=" col-sm-12 col-md-6">
+                                    <div class="answer answer3 shadow">
+                                        kdlf;g
+                                    </div>
+
+                                </div>
+                                <div class=" col-sm-12 col-md-6">
+                                    <div class="answer  answer4 shadow">
+                                        fgdljkdkflds;sha384-BVYiiS
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
                     </div>
-                    <button type="button" id="addpost" class="btn btn-primary">Post</button>
-                </form>
+                </div>
             </div>
-        </div>
-    </div>
-    <script id="post-template" type="text/x-handlebars-template">
-        <div class="post"> {{text}} <a class="toggle-comments" href="#"> Comments </a>
-            <button type="button" class="btn btn-danger remove-post">Remove Post</button>
-            <!--<div>111</div>-->
-            <div class="comments-container">
-                <ul class="comments-list"></ul>
-                <input class="form-control name" type="text" placeholder="Name" />
-                <input class="form-control comment" type="text" placeholder="Comment" />
-                <button type="button" class="btn btn-sm btn-primary add-comment">Post Comment</button>
-            </div>
-        </div>
-    </script>
-    <script id="comment-template" type="text/x-handlebars-template">
-        <li class="comment">{{text}} - {{user}}
-            <button type="button" class="btn btn-sm btn-danger remove-comment">Remove Comment</button>
-        </li>
-    </script>
-    <script src="jquery/dist/jquery.js"></script>
-    <script src="handlebars/dist/handlebars.js"></script>
-    <script src="main.js" type="module"></script>
+        </script>
+         
 </body>
 
 </html>

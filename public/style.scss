@@ -1,0 +1,118 @@
+$primary-dark: rgb(2, 14, 46);
+$primary-light: white;
+
+body{
+    background-image: url("background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    margin: 0 auto;
+    color:  $primary-light;
+    padding-top: 100px;
+    
+    .background{
+        background-color: rgba(18, 28, 70, 0.651);
+        height: 100%;
+        width:100%;
+        position: absolute;
+        top:0;
+        bottom:0;
+    }
+
+    .navbar{
+        background-color: $primary-dark;
+    a {
+            color: $primary-light;
+        }
+
+    i {
+            color: $primary-light;
+        }
+
+    .container{
+        margin-left: 0;
+        }
+    }
+
+    .configure-game-container{
+        .game-container{
+
+            padding-top:50px;
+
+            .question-container {
+                background-color: rgba(11, 17, 43, 0.952);
+                border: 5px solid #ccc;
+                border-radius: 15px;  
+                padding: 30px;
+
+
+                .the-question-container{
+                    color: $primary-light;
+                    text-align: center;
+                
+                }
+
+                .timer{
+                    font-size: 50px;
+                    font-weight: 600;
+                    color: grey;
+                }
+
+                
+            
+                .answers-container{
+
+                    margin: auto;
+
+
+                    .answer{
+                        color: $primary-light;
+                        text-align: center;
+                        padding: 30px;
+                        margin: 20px;
+                        background-color: rgb(24, 39, 83);
+                        font-size: 20px;
+                        border-radius: 25px;
+                        border: 2px solid #ccc;
+
+                        }
+
+                        .answer:hover { 
+                        background-color:rgb(37, 95, 143);
+                        }
+                }
+            }
+    
+        
+        }
+        .set-game-container{
+
+            padding-top: 50px;
+            label{
+                 color:  $primary-light;
+            }
+
+            .start-game-btn{
+                color: $primary-light;
+                background-color: $primary-dark;
+                border: 2px solid #ccc;
+                font-size: 40px;
+                margin-top: 30px;
+
+            }
+
+            .start-game-btn:hover { 
+                background-color:rgb(37, 95, 143);
+                }
+    }
+
+    }
+    
+}
+
+
+*{
+    box-sizing: border-box;
+    font-family:  'Maitree', serif;
+}
