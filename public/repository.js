@@ -3,7 +3,7 @@
  */
 // Private Method
 const privateMethods = {
-    updatePost (postIndex) {
+    /* updatePost (postIndex) {
         var postToSend = Object.create(this.posts[postIndex]);
         postToSend.comments = JSON.stringify(postToSend.comments);
         $.ajax('/updatePost', {
@@ -19,7 +19,7 @@ const privateMethods = {
     }
 }
 
-class PostsRepository {
+class repository {
     constructor () {
         this.posts = [];
     }
@@ -76,7 +76,7 @@ class PostsRepository {
     deleteComment(postIndex, commentIndex) {
         this.posts[postIndex].comments.splice(commentIndex, 1);
         privateMethods.updatePost.call(this, postIndex);
-      };
+      }; */
 }
 
 export default PostsRepository
