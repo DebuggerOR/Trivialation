@@ -1,6 +1,6 @@
-import PostsRepository from './posts-repository.js';
-import PostsRenderer from './posts-renderer.js';
-import EventsHandler from './events-handler.js';
+import PostsRepository from './controllers/posts-repository.js';
+import PostsRenderer from './controllers/posts-renderer.js';
+import EventsHandler from './controllers/events-handler.js';
 
 // Wait to PostsRepository do Async call
 var postsRepository = new PostsRepository();

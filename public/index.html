@@ -1,50 +1,140 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <link href="bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
-    <title></title>
-</head>
-
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <div class="page-header">
-                    <h1>Spacebook</h1>
-                </div>
-                <div class="posts"></div>
-                <form class="post-form">
-                    <h3>Add a New Post</h3>
-                    <div class="form-group">
-                        <input class="form-control" type="text" id="postText" placeholder="Enter Post Text"/>
-                    </div>
-                    <button type="button" id="addpost" class="btn btn-primary">Post</button>
-                </form>
-            </div>
+  <head>
+    <title>Trivialation</title>
+    <link rel="stylesheet" href="/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <div class="navbar-brand">Node Login</div>
         </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <div class="navbar-btn"><a class="btn btn-default" href="https://github.com/braitsch/node-login#readme">Documentation</a></div>
+          </li>
+          <li>
+            <div class="navbar-btn"><a class="btn btn-default" href="https://github.com/braitsch/node-login">Source</a></div>
+          </li>
+          <li>
+            <div class="navbar-btn btn btn-default" id="btn-donate">Donate</div>
+          </li>
+          <li>
+            <div class="navbar-btn"><a class="btn btn-default" href="http://braitsch.io">&copy; braitsch</a></div>
+          </li>
+          <li>
+            <div class="navbar-btn btn btn-primary hide" id="btn-logout">Sign Out</div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="center-vertical" id="login">
+      <form class="well" id="form-login" method="post">
+        <h2>Hello!</h2>
+        <h6>Please Login To Your Account</h6>
+        <div class="form-group">
+          <label>Username</label>
+          <input class="form-control" type="text" id="user-tf" name="user">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input class="form-control" type="password" id="pass-tf" name="pass">
+        </div>
+        <div class="controls">
+          <button class="btn btn-default button-rememember-me" type="button"><span class="glyphicon glyphicon-unchecked button-rememember-me-glyph"></span>Remember Me</button>
+          <button class="btn btn-primary button-sign-in" type="submit"><span class="glyphicon glyphicon-lock"></span>Sign In</button>
+        </div>
+        <div class="clearfix"></div>
+        <hr>
+        <div class="btm-links">
+          <div id="forgot-password"><a href="#">Forgot Your Password?</a></div>
+          <div id="create-account"><a href="/signup">Create An Account</a></div>
+        </div>
+        <div class="clearfix"></div>
+      </form>
     </div>
-    <script id="post-template" type="text/x-handlebars-template">
-        <div class="post"> {{text}} <a class="toggle-comments" href="#"> Comments </a>
-            <button type="button" class="btn btn-danger remove-post">Remove Post</button>
-            <!--<div>111</div>-->
-            <div class="comments-container">
-                <ul class="comments-list"></ul>
-                <input class="form-control name" type="text" placeholder="Name" />
-                <input class="form-control comment" type="text" placeholder="Comment" />
-                <button type="button" class="btn btn-sm btn-primary add-comment">Post Comment</button>
-            </div>
+    <div class="modal-alert modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <!--button.close(data-dismiss='modal') x-->
+            <h4></h4>
+          </div>
+          <div class="modal-body">
+            <p></p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-dismiss="modal" id="ok">OK</button>
+          </div>
         </div>
-    </script>
-    <script id="comment-template" type="text/x-handlebars-template">
-        <li class="comment">{{text}} - {{user}}
-            <button type="button" class="btn btn-sm btn-danger remove-comment">Remove Comment</button>
-        </li>
-    </script>
-    <script src="jquery/dist/jquery.js"></script>
-    <script src="handlebars/dist/handlebars.js"></script>
-    <script src="main.js" type="module"></script>
-</body>
-
+      </div>
+    </div>
+    <div class="modal fade" id="get-credentials">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button class="close" data-dismiss="modal">x</button>
+            <h4>Retrieve Password</h4>
+          </div>
+          <div class="modal-body">
+            <form class="well" method="post" id="get-credentials-form">
+              <div class="form-group">
+                <label>Please enter the email address associated with your account</label>
+                <input class="form-control required" type="text" id="email-tf" name="email">
+                <div class="alert alert-danger hide"></div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-default" data-dismiss="modal" id="cancel">Cancel</button>
+            <button class="btn btn-primary" type="submit" id="retrieve-password-submit">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal modal-donate fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <h4 class="modal-title">Donate</h4>
+          </div>
+          <div class="modal-body">Thanks for using <b>Node Login!</b><br><br>If this project is helping you out you can make a small donation here to say thanks.<br><br>Your donation is greatly appreciated and helps support <a href='https://github.com/braitsch' target='_blank'>all of my open source projects</a>.<br><br>
+            <label class="radio-inline">
+              <input type="radio" name="donationRadios" value="100">$1
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="donationRadios" value="500" checked="checked">$5
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="donationRadios" value="1000">$10
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="donationRadios" value="2500">$25
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="donationRadios" value="5000">$50
+            </label>
+            <div class="thanks">Thanks!</div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-default" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
+            <button class="btn btn-primary btn-donate" type="button">Donate</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/vendor/jquery-2.2.3.min.js"></script>
+    <script src="/vendor/jquery.form.min.js"></script>
+    <script src="/vendor/bootstrap.min.js"></script>
+    <script src="/js/views/login.js"></script>
+    <script src="/js/controllers/loginController.js"></script>
+    <script src="/js/form-validators/loginValidator.js"></script>
+    <script src="/js/form-validators/emailValidator.js"></script>
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+    <script src="/js/views/stripe.js"></script>
+  </body>
 </html>
