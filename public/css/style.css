@@ -1,5 +1,5 @@
 body {
-  background-image: url(../img/background.jpg);
+  background-image: url("../img/background.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -28,28 +28,28 @@ body .navbar i {
 body .navbar .container {
   margin-left: 0;
 }
-body .game-container {
+body .configure-game-container .game-container {
   padding-top: 50px;
 }
-body .game-container .question-container {
+body .configure-game-container .game-container .question-container {
   background-color: rgba(11, 17, 43, 0.952);
   border: 5px solid #ccc;
   border-radius: 15px;
   padding: 30px;
 }
-body .game-container .question-container .the-question-container {
+body .configure-game-container .game-container .question-container .the-question-container {
   color: white;
   text-align: center;
 }
-body .game-container .question-container .timer {
+body .configure-game-container .game-container .question-container .timer {
   font-size: 50px;
   font-weight: 600;
   color: grey;
 }
-body .game-container .question-container .answers-container {
+body .configure-game-container .game-container .question-container .answers-container {
   margin: auto;
 }
-body .game-container .question-container .answers-container .answer {
+body .configure-game-container .game-container .question-container .answers-container .answer {
   color: white;
   text-align: center;
   padding: 30px;
@@ -59,7 +59,23 @@ body .game-container .question-container .answers-container .answer {
   border-radius: 25px;
   border: 2px solid #ccc;
 }
-body .game-container .question-container .answers-container .answer:hover {
+body .configure-game-container .game-container .question-container .answers-container .answer:hover {
+  background-color: #255f8f;
+}
+body .configure-game-container .set-game-container {
+  padding-top: 50px;
+}
+body .configure-game-container .set-game-container label {
+  color: white;
+}
+body .configure-game-container .set-game-container .start-game-btn {
+  color: white;
+  background-color: #020e2e;
+  border: 2px solid #ccc;
+  font-size: 40px;
+  margin-top: 30px;
+}
+body .configure-game-container .set-game-container .start-game-btn:hover {
   background-color: #255f8f;
 }
 

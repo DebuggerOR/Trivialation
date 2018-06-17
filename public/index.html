@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
         crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Maitree" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    
+   
+   
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
 
@@ -56,7 +56,8 @@
             <div class="col-10 col-md-7 set-game-container justify-content-center">
                 <label for="trivia_category">Select Category: </label>
                 <select name="trivia_category" class="form-control">
-                        {{#each ../catagory}}
+                        <option value="1">Any Catagory</option>
+                        {{#each trivia_categories}}
                         <option value="{{id}}">{{name}}</option>
                         {{/each}}
                 </select>
@@ -127,6 +128,13 @@
                 </div>
             </div>
         </script>
+       
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="handlebars/dist/handlebars.js"></script>
+        <script src="../js/main.js"  type="module"></script>
+
          
 </body>
 

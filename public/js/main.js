@@ -1,21 +1,44 @@
-<<<<<<< HEAD:public/main.js
-import Repository from './epository.js';
-import Renderer from './renderer.js';
-import EventsHandler from './events-handler.js';
-=======
-import PostsRepository from './controllers/posts-repository.js';
-import PostsRenderer from './controllers/posts-renderer.js';
+import Repository from './controllers/repository.js' ;
+import Renderer from './controllers/renderer.js';
 import EventsHandler from './controllers/events-handler.js';
->>>>>>> 33d19f0103c4a2c9251fcc7e2100e66e0957cfd5:public/js/main.js
+
 
 // Wait to PostsRepository do Async call
-var repository = new repository();
+var repository = new Repository();
 repository.init(function() {
-    let renderer = new renderer();
+    let renderer = new Renderer();
     let eventsHandler = new EventsHandler(this, renderer);
   
 });
 
+
+$( document ).ready(function() {
+   loadConfigureGameHandlebar();
+});
+
+
+let  loadConfigureGameHandlebar = function () {
+    let source   = $('#set-game-template').html();
+    let template = Handlebars.compile(source);
+
+    $.ajax({
+        method: "POST",
+        url: 'https://opentdb.com/api_category.php',
+        dataType: "json",
+        success: (data) =>{
+            console.log(data);
+            let theCompiledHtml = template(data);
+            $('.configure-game-container').append(theCompiledHtml);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(textStatus);
+        }
+    });
+
+
+    
+    
+}
 /* eventsHandler.registerAddPost();
 eventsHandler.registerRemovePost();
 eventsHandler.registerToggleEditPost();

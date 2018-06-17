@@ -1,8 +1,11 @@
     /**
      * @class Responsible for rendering posts and comments in the HTML
      */
-class PostsRenderer {
-    constructor() {
+class Renderer {
+    constructor(){
+        
+    }
+   /*  constructor() {
         this.$posts = $(".posts");
         this.$postTemplate = $('#post-template').html();
         this.$commentTemplate = $('#comment-template').html();
@@ -28,7 +31,7 @@ class PostsRenderer {
           let newHTML = template(posts[postIndex].comments[i]);
           $commentsList.append(newHTML);
         }
-    }
+    } */
 }
 
-export default PostsRenderer
+export default Renderer

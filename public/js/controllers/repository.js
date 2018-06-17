@@ -3,7 +3,7 @@
  */
 // Private Method
 const privateMethods = {
-    updatePost (postIndex) {
+    /* updatePost (postIndex) {
         var postToSend = Object.create(this.posts[postIndex]);
         postToSend.comments = JSON.stringify(postToSend.comments);
         $.ajax('/updatePost', {
@@ -17,15 +17,17 @@ const privateMethods = {
             }
         });
     }
+    */
 }
 
-class PostsRepository {
+class Repository {
     constructor () {
-        this.posts = [];
+        this.players = [];
+        this.games = [];
     }
 
     init (callback) {
-        // do async get data and call the callback:
+      /*   // do async get data and call the callback:
         var that = this;
         $.get({
             url: "/posts",
@@ -38,9 +40,10 @@ class PostsRepository {
                 that.posts = data;
                 callback.bind(that)();
             }
-        });
-    }
+        }); */
+    } 
 
+    /*
     addPost(postText) {
         var postJsonToSend = { text: postText, comments: [] };
         this.posts.push(postJsonToSend);
@@ -76,7 +79,7 @@ class PostsRepository {
     deleteComment(postIndex, commentIndex) {
         this.posts[postIndex].comments.splice(commentIndex, 1);
         privateMethods.updatePost.call(this, postIndex);
-      };
+      }; */
 }
 
-export default PostsRepository
+export default Repository
