@@ -1,8 +1,9 @@
 var mongoose = require('mongoose');
-var player = require('playerModel');
+var Schema = mongoose.Schema;
+var player = require('./playerModel');
 
 let gameSchema = new mongoose.Schema({
-    player_id: player._id,
+    player: {type: Schema.Types.ObjectId, ref: 'player'},
     score: Number,
     avg_time: Number,
     game_date: Date,
@@ -10,6 +11,7 @@ let gameSchema = new mongoose.Schema({
     level: String
 });
 
-let Game = mongoose.model('game', gameSchema)
+let Game = mongoose.model('game', gameSchema);
+
 
 module.exports = Game;
