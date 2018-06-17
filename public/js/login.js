@@ -9,8 +9,8 @@
 // }
 
 $(document).ready(function(){
-    $("#login-div").style.display='block';
-    $("#signup-div").style.display='none';
+    $("#login-div").show();
+    $("#signup-div").hide();
 });
 
 
@@ -36,6 +36,21 @@ $("#login-btn").click((event)=>{
 });
 
 $("#cact-btn").click((event)=>{
-    $("#login-div").style.display='none';
-    $("#signup-div").style.display='block';
+    $("#login-div").hide();
+    $("#signup-div").show();
 });
+
+$("#cls-signup").click(() => {
+    $("#signup-div").hide();
+    $("#login-div").show();
+});
+
+$("#signup-btn").click(()=>{
+    $.post('/signup', { username: username, password : pw},
+        function(returnedData){
+            $("#signup-div").hide();
+            $("#login-div").hide();
+        }).fail(function(){
+        console.log("error");
+    });
+})

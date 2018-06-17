@@ -10,11 +10,12 @@
 
     <form class="modal-content animate">
         <div class="imgcontainer">
-            <span onclick="document.getElementById('login-div').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <!--<span onclick="document.getElementById('login-div').style.display='none'" class="close" title="Close Modal">&times;</span>-->
             <img src="img/amonymus.png" alt="Avatar" class="avatar">
         </div>
 
         <div class="container">
+            <h1>Login</h1>
             <label for="uname"><b>Username</b></label>
             <input type="text" placeholder="Enter Username" name="uname" required>
 
@@ -38,8 +39,12 @@
 </div>
 
 <div id="signup-div" class="modal">
-    <span onclick="document.getElementById('signup-div').style.display='none'" class="close" title="Close Modal">&times;</span>
-    <form class="modal-content">
+    <form class="modal-content animate">
+        <div class="imgcontainer">
+            <span id="cls-signup" class="close" title="Close Modal">&times;</span>
+            <img src="img/amonymus.png" alt="Avatar" class="avatar">
+        </div>
+
         <div class="container">
             <h1>Sign Up</h1>
             <p>Please fill in this form to create an account.</p>
@@ -61,12 +66,14 @@
 
             <div class="clearfix">
                 <button type="button" onclick="document.getElementById('signup-div').style.display='none'" class="cancelbtn">Cancel</button>
-                <button type="submit" class="signupbtn">Sign Up</button>
+                <button type="button" id="signup-btn" class="signupbtn">Sign Up</button>
             </div>
         </div>
     </form>
 </div>
 
+<script src="https://code.jquery.com/jquery-2.2.3.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
 <script src="./js/login.js"></script>
 
 </body>
