@@ -17,6 +17,12 @@
 <body>
     <div class="background">
 
+        <script>
+            $(function(){
+                $("#includedContent").load("login.html");
+            });
+        </script>
+
         <nav class="navbar navbar-inverse navbar-dark bg-inverse navbar-expand-lg">
 
             <!-- Brand/logo -->
@@ -49,7 +55,7 @@
         <div class="container">
 
             <div class="row  justify-content-center configure-game-container">
-                
+                <div id="includedContent"></div>
             </div>
         </div>
         <script id="set-game-template" type="text/x-handlebars-template">
