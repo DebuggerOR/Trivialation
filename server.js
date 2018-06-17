@@ -30,10 +30,17 @@ var Player = require('./models/playerModel');
 var Game = require('./models/gameModel.js');
 
 
-app.get('/signup', function(request, response) {
-    var username = request.query.username;
-    var password = request.query.password;
+app.post('/signup', function(request, response) {
+    var username = request.body.username;
+    var password = request.body.password;
 
     // TODO: save username to players db
+});
+
+app.post('/login', function(request, response) {
+    var username = request.body.username;
+    var password = request.body.password;
+
+    // TODO: check user is in DB
 });
 

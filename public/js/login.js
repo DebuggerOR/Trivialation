@@ -1,22 +1,48 @@
-// // Get the modal
-// var modal = document.getElementById('id01');
-//
-// // When the user clicks anywhere outside of the modal, close it
-// window.onclick = function(event) {
-//     if (event.target == modal) {
-//         modal.style.display = "none";
-//     }
-// }
-
+// on start
 $(document).ready(function(){
     $("#login-div").show();
     $("#signup-div").hide();
+    $("#login-err-msg").hide();
+    $("#signup-err-msg").hide();
 });
 
+// create account in login page screen
+$("#cact-btn").click((event)=>{
+    $("#login-div").hide();
+    $("#signup-div").show();
+});
 
+// when clock on cancle button in sign-up screen
+$("#cls-signup").click(() => {
+    $("#signup-div").hide();
+    $("#login-div").show();
+});
+
+// Create player when user clicks create account
+$("#signup-btn").click(()=>{
+    // get user name and password
+    let username = $("#signup-uname").val();
+    let pw = $("#signup-psw").val();
+
+    // post the player details
+    $.ajax('/signup', {
+        method: "POST",
+        data: { username: username, password : pw},
+        success: function(data) {
+            $("#signup-div").hide();
+            $("#login-div").hide();
+        },
+        error: function(data) {
+            $("#signup-err-msg").show();
+            console.log('Error: ' + data);
+        }
+    });
+})
+
+// login username
 $("#login-btn").click((event)=>{
-    let username = $("#uname").val;
-    let password = $("#psw").val;
+    let username = $("#login-uname").val();
+    let password = $("#login-psw").val();
 
     $.ajax('/login', {
         method: "POST",
@@ -25,32 +51,12 @@ $("#login-btn").click((event)=>{
             password: password
         },
         success: function(data) {
-            console.log(data);
-            // TODO: need to replace html to game instead of login
+            $("#signup-div").hide();
+            $("#login-div").hide();
         },
         error: function(data) {
+            $("#login-err-msg").show();
             console.log('Error: ' + data);
-            // TODO: write it is an error
         }
     });
 });
-
-$("#cact-btn").click((event)=>{
-    $("#login-div").hide();
-    $("#signup-div").show();
-});
-
-$("#cls-signup").click(() => {
-    $("#signup-div").hide();
-    $("#login-div").show();
-});
-
-$("#signup-btn").click(()=>{
-    $.post('/signup', { username: username, password : pw},
-        function(returnedData){
-            $("#signup-div").hide();
-            $("#login-div").hide();
-        }).fail(function(){
-        console.log("error");
-    });
-})
