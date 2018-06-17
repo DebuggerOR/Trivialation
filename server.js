@@ -35,6 +35,10 @@ app.post('/signup', function(request, response) {
     var password = request.body.password;
 
     // TODO: save username to players db
+    var status = "ok";
+    if(status){
+        response.send("create account success");
+    }
 });
 
 app.post('/login', function(request, response) {
@@ -42,5 +46,9 @@ app.post('/login', function(request, response) {
     var password = request.body.password;
 
     // TODO: check user is in DB
+    var status = "ok";
+    if(status){
+        response.send("login success");
+    }
 });
 
