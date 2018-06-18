@@ -1,4 +1,4 @@
-import Repository from './controllers/repository.js' ;
+/* import Repository from './controllers/repository.js' ;
 import Renderer from './controllers/renderer.js';
 import EventsHandler from './controllers/events-handler.js';
 
@@ -10,7 +10,7 @@ repository.init(function() {
     let eventsHandler = new EventsHandler(this, renderer);
   
 });
-
+ */
 
 $( document ).ready(function() {
    loadConfigureGameHandlebar();
@@ -18,27 +18,23 @@ $( document ).ready(function() {
 
 
 let  loadConfigureGameHandlebar = function () {
-    let source   = $('#set-game-template').html();
-    let template = Handlebars.compile(source);
-
     $.ajax({
         method: "POST",
         url: 'https://opentdb.com/api_category.php',
         dataType: "json",
         success: (data) =>{
-            console.log(data);
-            let theCompiledHtml = template(data);
+            console.log(Handlebars);
+            var theCompiledHtml = Handlebars.templates.set_game(data);
             $('.configure-game-container').append(theCompiledHtml);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(textStatus);
         }
     });
-
-
-    
     
 }
+
+
 /* eventsHandler.registerAddPost();
 eventsHandler.registerRemovePost();
 eventsHandler.registerToggleEditPost();
