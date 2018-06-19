@@ -11,9 +11,12 @@ repository.init(function() {
   
 });
  */
+import Login from './login/login.js';
 
 $( document ).ready(function() {
-   loadConfigureGameHandlebar();
+    $("#includedContent").load("./login/login.html", function(){
+        let login = new Login();
+    });
 });
 
 
