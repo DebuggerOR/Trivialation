@@ -15,10 +15,10 @@
         </div>
 
         <div class="container">
-            <h2 id="login-err-msg" style="color: red">username/password is not valid</h2>
+            <h2 id="login-err-msg" style="color: red"></h2>
             <h1>Login</h1>
             <label for="uname"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" id="login-uname" name="uname" required>
+            <input class="form-control" id="login-uname" type="email" placeholder="Enter Email" name="uname" required>
 
             <label for="psw"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" id="login-psw" name="psw" required>
@@ -27,7 +27,7 @@
             <button type="button" id="cact-btn">Create account</button>
 
             <label>
-                <input type="checkbox" checked="checked" name="remember"> Remember me
+                <input id="login-remember" type="checkbox" checked="checked" name="remember"> Remember me
             </label>
         </div>
 
@@ -51,17 +51,17 @@
             <p>Please fill in this form to create an account.</p>
             <hr>
             <label for="email"><b>Email</b></label>
-            <input id="signup-uname" type="text" placeholder="Enter Email" name="email" required>
+            <input class="form-control" id="signup-uname" type="email" placeholder="Enter Email" name="email" required>
 
             <label for="psw"><b>Password</b></label>
-            <input id="password" id="signup-psw" type="password" placeholder="Enter Password" name="psw" required>
+            <input id="signup-psw" type="password" placeholder="Enter Password" name="psw" required>
 
             <label for="psw-repeat"><b>Repeat Password</b></label>
             <input id="confirm_password" type="password" placeholder="Repeat Password" name="psw-repeat" required>
             <span id='message'></span>
 
             <label>
-                <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+                <input type="checkbox" id="signup-remember" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
             </label>
 
             <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
@@ -76,7 +76,7 @@
 <script src="https://code.jquery.com/jquery-2.2.3.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
-<script src="../login/login.js"></script>
+<script src="../login/login.js" type="module"></script>
 
 </body>
 </html>
