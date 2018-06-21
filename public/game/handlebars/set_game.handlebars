@@ -1,6 +1,6 @@
 <div class="col-10 col-md-7 set-game-container justify-content-center">
                 <label for="trivia_category">Select Category: </label>
-                <select name="trivia_category" class="form-control">
+                <select id="trivia_category" class="form-control">
                         <option value="1">Any Catagory</option>
                         {{#each trivia_categories}}
                         <option value="{{id}}">{{name}}</option>
@@ -8,7 +8,7 @@
                 </select>
                 <br>
                 <label for="trivia_difficulty">Select Difficulty: </label>
-                <select name="trivia_difficulty" class="form-control">
+                <select id="trivia_difficulty" class="form-control">
                     <option value="any">Any Difficulty</option>
                     <option value="easy">Easy</option>
                     <option value="medium">Medium</option>
