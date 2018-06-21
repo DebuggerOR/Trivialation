@@ -182,6 +182,13 @@ class Game {
             //run the next quesition;  
             this.displayQuestion(this.questions[++this.current_question_index]);
         }
+
+        //end of game
+        this.endGame();
+    }
+
+    endGame(){
+        this.
     }
     
 
