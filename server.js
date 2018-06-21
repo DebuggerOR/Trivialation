@@ -35,44 +35,60 @@ app.post('/signup', function(request, response) {
     let password = request.body.password;
     let rememberMeChecked = request.body.rememberMeChecked;
 
-    // get token from api
-    axios.get('https://opentdb.com/api_token.php?command=request').then(function(a_res){
-        // save player to DB
-        return Player.savePlayerToDB(username, password, a_res.data.token);
-    }).then(function(player){
+    // save player to DB
+    Player.savePlayerToDB(username, password).then((player) => {
         if(rememberMeChecked){
             // TODO: Add to local storage if remember me
         }
 
         let currPlayer = {
-            username: player._doc.username,
-            password: player._doc.password
+            username: player.username,
+            password: player.password,
+            token: player.token,
+            timeInSeconds: player.timeInSeconds,
+            userId: player.id
         }
         response.send(currPlayer);
-    }).catch(function(err) {
+    }).catch((err) => {
         response.status(500);
         response.send(helper.replaceAll(err.errors.username.message,{"path": "", "not unique": "already taken"}));
     });
 });
 
+app.get('/updatePlayerToken', function(request, response) {
+    let username = request.query.username;
+    let password = request.query.password;
+    let rememberMeChecked = false;
+
+    sendPlayerToClient(request, response, rememberMeChecked, username, password);
+});
 
 app.post('/login', function(request, response) {
     let username = request.body.username;
     let password = request.body.password;
     let rememberMeChecked = request.body.rememberMeChecked;
 
-    Player.getPlayerFromDB(username, password).then(function(player){
+    sendPlayerToClient(request, response, rememberMeChecked, username, password);
+});
+
+// getPlayerFromDB return player with valid token
+let sendPlayerToClient = function(request, response, rememberMeChecked, username, password){
+    Player.getPlayerFromDB(username, password).then((player)=>{
         if(rememberMeChecked){
             // TODO: Add to local storage if remember me
         }
         let currPlayer = {
-            username: player[0]._doc.username,
-            password: player[0]._doc.password
+            username: player.username,
+            password: player.password,
+            token: player.token,
+            timeInSeconds: player.timeInSeconds,
+            userId: player.id,
         }
         response.send(currPlayer);
-    }).catch(function(err) {
+    }).catch((err)=> {
         response.status(500);
         response.send("username/password are wrong");
     });
-});
+}
+
 
