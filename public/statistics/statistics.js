@@ -1,24 +1,42 @@
  class Statistics {
 
-     constructor(game, player) {
+     constructor(game) {
          this.game = game;
-         this.player = player;
-     }
-
-
-     globalScore(){
-
      }
 
 
 
 
-     record(){
+
+     getScoreArray() {
+         //score_array_by_cat = 
+         db.stat.find({player:"davis", category: "football"}, 
+            {score: 1} );~
+     }
+
+     getSpeedArray() {
+        //speed_array_by_cat = 
+        db.stat.find({player:"davis", category: "football"}, 
+           {avg_time: 1} );
+    }
+
+
+    
+
+
+     globalScore() {
+
+     }
+
+
+
+
+     record() {
          max
      }
 
 
-     
+
 
 
 
