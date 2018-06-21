@@ -1,17 +1,31 @@
  import Game from './game/game.js' ;
+ import Login from './login/login.js';
 
 let player = {username: 'Yocheved', password: "fkdxlxjgkj"};
 
-// Wait to PostsRepository do Async call
-let game = new Game(player);
-
-game.registerGameEvents();
-
-
 $( document ).ready(function() {
-    $("#includedContent").load("./login/login.html");
- });
+    $("#includedContent").load("./login/login.html", function(){
+        let login = new Login();
+    });
+});
 
+
+let  loadConfigureGameHandlebar = function () {
+    $.ajax({
+        method: "POST",
+        url: 'https://opentdb.com/api_category.php',
+        dataType: "json",
+        success: (data) =>{
+            console.log(Handlebars);
+            var theCompiledHtml = Handlebars.templates.set_game(data);
+            $('.configure-game-container').append(theCompiledHtml);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(textStatus);
+        }
+    });
+
+}
 
 
 /* eventsHandler.registerAddPost();
