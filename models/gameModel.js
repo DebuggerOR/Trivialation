@@ -6,7 +6,7 @@ let gameSchema = new mongoose.Schema({
     player: {type: Schema.Types.ObjectId, ref: 'player'},
     score: Number,
     avg_time: Number,
-    game_date: Date,
+    game_date: {type: Date, default: Date.now },
     catagory: String,
     level: String
 });

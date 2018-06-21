@@ -9,15 +9,23 @@ body{
    background-attachment: fixed;
    margin: 0 auto;
    color:  $primary-light;
-   padding-top: 100px;
    
    .background{
-       background-color: rgba(18, 28, 70, 0.651);
+       //background-color: rgba(18, 28, 70, 0.651);
+       background-attachment: fixed;
+       background-size: cover;
+       margin: 0 auto;
        height: 100%;
        width:100%;
        position: absolute;
        top:0;
        bottom:0;
+       right:0;
+       left:0;
+       margin: 0 auto;
+       padding-top: 70px;
+      
+
    }
 
    .navbar{
@@ -38,7 +46,6 @@ body{
    .configure-game-container{
        .game-container{
 
-           padding-top:50px;
 
            .question-container {
                background-color: rgba(11, 17, 43, 0.952);
@@ -75,6 +82,7 @@ body{
                        font-size: 20px;
                        border-radius: 25px;
                        border: 2px solid #ccc;
+                       transition:background-color 0.5s ease;
 
                        }
 
