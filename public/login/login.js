@@ -12,6 +12,10 @@ class Login{
         this.loginUser();
     }
 
+    getCurrentPlayer(){
+        return this.currentPlayer;
+    }
+
     showLoginDivOnStart(){
         // on start
         $(document).ready(function(){
@@ -64,7 +68,8 @@ class Login{
                     rememberMeChecked: remember
                 },
                 success: function(data) {
-                    console.log(data);
+                    // player returns from server
+                    this.currentPlayer = data;
                     $("#signup-div").hide();
                     $("#login-div").hide();
                 },
@@ -91,7 +96,8 @@ class Login{
                     rememberMeChecked: remember
                 },
                 success: function(data) {
-                    console.log(data);
+                    // player returns from server
+                    this.currentPlayer = data;
                     $("#signup-div").hide();
                     $("#login-div").hide();
                 },

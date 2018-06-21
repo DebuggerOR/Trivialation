@@ -44,7 +44,11 @@ app.post('/signup', function(request, response) {
             // TODO: Add to local storage if remember me
         }
 
-        response.send(player._doc.username + " saved successfully to Database");
+        let currPlayer = {
+            username: player._doc.username,
+            password: player._doc.password
+        }
+        response.send(currPlayer);
     }).catch(function(err) {
         response.status(500);
         response.send(helper.replaceAll(err.errors.username.message,{"path": "", "not unique": "already taken"}));
@@ -61,8 +65,11 @@ app.post('/login', function(request, response) {
         if(rememberMeChecked){
             // TODO: Add to local storage if remember me
         }
-
-        response.send(player[0]._doc.username + " login successful");
+        let currPlayer = {
+            username: player[0]._doc.username,
+            password: player[0]._doc.password
+        }
+        response.send(currPlayer);
     }).catch(function(err) {
         response.status(500);
         response.send("username/password are wrong");
