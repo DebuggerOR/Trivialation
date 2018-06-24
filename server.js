@@ -126,11 +126,7 @@ app.get('/stat/:game.player', function(request, response) {
      });
  }); 
   
- 
- 
- 
- 
- //nb games played
+//nb games played
  app.get('/stat/:player', function(request, response) {
      var player= req.params.player;
      Game.count({ player: player},function (error, result) {
