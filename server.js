@@ -57,36 +57,42 @@ app.post('/login', function(request, response) {
     }
 });
 
+//stat: give me the max\
 
-
-app.get('/stat-record', function(request, response) {
-   Game.findOne({ player: '5b2bdf855876fb3f002428ed' })
-  .sort('-score')  // give me the max
+app.get('/stat/:game.player', function(request, response) {
+   var player= req.params.game.player;
+   Game.findOne({ player: player})
+  .sort('-score')  
   .exec(function (error, result) {
     if(error) { return console.error(error); }
             response.send(result.score);
   });
 }); 
 
+//give rank 
+app.get('/stat/:game.player', function(request, response) {
+    var player= req.params.game.player;
+    Game.find({ player: player}, function(error, result) {
+    var  last_score=  
+  var rank=1;
+  if (result[])       
+    })
+   
+ } 
+ 
 
 
-// app.get('/stat-record', function(request, db) {
-//     db.games.aggregate([{$group:{_id: "$player", record:{$max: "$score"}}}], function (error, result){
-
-//         if(error) { return console.error(error); }
-//         response.send(result);
-//     });
-// });
 
 
-// app.get('/stat-nb-games', function(request, db) {
-//     db.games.aggregate( [{ "$unwind": "$player" }, { "$group": { "_id": "$player", "nb_games_played": {"$sum": 1 }}} ],  
-//     function (error, result){
-
-//         if(error) { return console.error(error); }
-//         response.send(result);
-//     });
-// });
+//nb games played
+app.get('/stat/:game.player', function(request, response) {
+    var player= req.params.game.player;
+    Game.count({ player: player},function (error, result) {
+     if(error) { return console.error(error); }
+             response.send(result);
+   });
+ }); 
+ 
 
 
 
