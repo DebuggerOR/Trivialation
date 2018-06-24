@@ -26,11 +26,11 @@ app.listen(process.env.PORT || SERVER_PORT, () => {
     console.log("Server started on port " + SERVER_PORT);
 });
 
-mongoose.connect('mongodb://localhost/trivialationDB', function() {
+mongoose.connect('mongodb://localhost/trivialationDB', function () {
     console.log("DB connection established!!!");
- });
+});
 
-app.post('/signup', function(request, response) {
+app.post('/signup', function (request, response) {
     let username = request.body.username;
     let password = request.body.password;
     let rememberMeChecked = request.body.rememberMeChecked;
@@ -51,11 +51,11 @@ app.post('/signup', function(request, response) {
         response.send(currPlayer);
     }).catch((err) => {
         response.status(500);
-        response.send(helper.replaceAll(err.errors.username.message,{"path": "", "not unique": "already taken"}));
+        response.send(helper.replaceAll(err.errors.username.message, { "path": "", "not unique": "already taken" }));
     });
 });
 
-app.get('/updatePlayerToken', function(request, response) {
+app.get('/updatePlayerToken', function (request, response) {
     let username = request.query.username;
     let password = request.query.password;
     let rememberMeChecked = false;
@@ -63,7 +63,7 @@ app.get('/updatePlayerToken', function(request, response) {
     sendPlayerToClient(request, response, rememberMeChecked, username, password);
 });
 
-app.post('/login', function(request, response) {
+app.post('/login', function (request, response) {
     let username = request.body.username;
     let password = request.body.password;
     let rememberMeChecked = request.body.rememberMeChecked;
@@ -86,10 +86,16 @@ let sendPlayerToClient = function(request, response, rememberMeChecked, username
             userId: player.id,
         }
         response.send(currPlayer);
-    }).catch((err)=> {
+    }).catch((err) => {
         response.status(500);
         response.send("username/password are wrong");
     });
 }
 
-
+app.post('/game', function (request, response) {
+    let game = request.body;
+    console.log(game);
+    Game.saveGameToDB(game).then((savedGame) => {
+        response.send(savedGame);
+    }).catch((err) => console.log(err));
+});

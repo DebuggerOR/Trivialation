@@ -83,11 +83,12 @@ body{
                        border-radius: 25px;
                        border: 2px solid #ccc;
                        transition:background-color 0.5s ease;
-
-                       }
+                       cursor: pointer;       
+                        }
 
                        .answer:hover {
                        background-color:rgb(37, 95, 143);
+
                        }
                }
            }

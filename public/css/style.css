@@ -61,6 +61,7 @@ body .configure-game-container .game-container .question-container .answers-cont
   border-radius: 25px;
   border: 2px solid #ccc;
   transition: background-color 0.5s ease;
+  cursor: pointer;
 }
 body .configure-game-container .game-container .question-container .answers-container .answer:hover {
   background-color: #255f8f;
