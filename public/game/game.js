@@ -1,8 +1,8 @@
 
 class Game {
-    constructor(player) {
-        this.player = player;
-        this.player.token = "6d6ff30c5e99463e3c47c9b116b82a927df610248001b5cc9a02fb69f1a4e07c";
+    constructor(login) {
+        this.login = login;
+        this.player = login.getCurrentPlayer();
         this.current_question_index = 0;
         this.total_questions = 10;
         this.total_time = 0;
@@ -28,6 +28,13 @@ class Game {
             that.category_name = $set_game_container.find("#trivia_category option:selected").text();
             that.difficulty = $set_game_container.find("#trivia_difficulty").val();
 
+            //if the token is expired (after 6 hours) then generate new token and update the player
+           /*  if ((new Date()).getTime() / 1000 - that.player.timeInSeconds > 21600) {
+                that.login.updatePlayer(that.player.username, that.player.password).then((updatedPlayer) => {
+                    console.log(updatedPlayer);
+                    that.player = updatedPlayer;
+                });
+            } */
             $container.empty();
             that.getGameAPI();
         })
@@ -69,12 +76,14 @@ class Game {
         //api_url += "&token=" + this.player.token;
         api_url += "&encode=base64";
 
+        api_url += "&token=" + this.player.token;
+
         $.ajax({
             method: "POST",
             url: api_url,
             dataType: "json",
             success: (data) => {
-                if(data.response_code != 0){
+                if (data.response_code != 0) {
                     console.log("error in API result");
                 }
                 console.log(data);
@@ -192,22 +201,23 @@ class Game {
             this.endGame();
         }
 
-        
 
-        
+
+
     }
 
     endGame() {
+        this.avg_speed = Math.ceil(this.total_time / this.total_questions);
         this.calculate_final_score();
         $.ajax('/game', {
             method: "POST",
             data: {
                 right_answers: this.right_answers,
                 player: this.player._id,
-                avg_speed: (this.total_time / this.total_questions),
+                avg_speed: this.avg_speed,
                 score: this.final_score,
                 category_name: this.category_name,
-                catagory_id: this.catagory_id,
+                catagory_id: this.category_id,
                 difficulty: this.difficulty
             },
             success: function (data) {
@@ -226,8 +236,8 @@ class Game {
         else if (this.right_answers === this.total_questions)
             this.final_score = 100;
         else {
-            this.final_score = (this.right_answers * (100 / this.total_questions)) +
-                ((this.seconds_per_question - this.total_time) * 1.5);
+            this.final_score = Math.ceil((this.right_answers * (100 / this.total_questions)) +
+                ((this.seconds_per_question - this.avg_speed) * 1.5));
         }
     }
 

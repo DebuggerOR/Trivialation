@@ -12,6 +12,7 @@ class Login{
         this.loginUser();
     }
 
+    // returns plaster as json e.g. {username: "roi", password: "1234", token: "1", timeInSeconds: "652765731" userId: "1111"}
     getCurrentPlayer(){
         return this.currentPlayer;
     }
@@ -106,6 +107,26 @@ class Login{
                     console.log('Error: ' + data);
                 }
             });
+        });
+    }
+
+    /**
+     * Update the player token.
+     * returns updated player.
+     * e.g.
+     *     new Login().updatePlayer("roi0@gmail.com", "123").then((p)=>{
+     *          console.log(p);
+     *     });
+     * @param {string} username.
+     * @param {string} password.
+     */
+    updatePlayer(username, password){
+        return $.get({
+                url:"/updatePlayerToken?username=" + username + "&password=" + password,
+            }
+        ).then((player) =>{
+            this.currentPlayer = player;
+            return this.getCurrentPlayer();
         });
     }
 }
