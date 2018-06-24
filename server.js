@@ -37,9 +37,9 @@ app.post('/signup', function (request, response) {
 
     // save player to DB
     Player.savePlayerToDB(username, password).then((player) => {
-        if (rememberMeChecked) {
-            // TODO: Add to local storage if remember me
-        }
+        // if(rememberMeChecked){
+        //     // TODO: Add to local storage if remember me
+        // }
 
         let currPlayer = {
             username: player.username,
@@ -72,11 +72,12 @@ app.post('/login', function (request, response) {
 });
 
 // getPlayerFromDB return player with valid token
-let sendPlayerToClient = function (request, response, rememberMeChecked, username, password) {
-    Player.getPlayerFromDB(username, password).then((player) => {
-        if (rememberMeChecked) {
-            // TODO: Add to local storage if remember me
-        }
+let sendPlayerToClient = function(request, response, rememberMeChecked, username, password){
+    Player.getPlayerFromDB(username, password).then((player)=>{
+        // if(rememberMeChecked){
+        //     // TODO: Add to local storage if remember me
+        // }
+
         let currPlayer = {
             username: player.username,
             password: player.password,

@@ -24,6 +24,10 @@ class Login{
             $("#signup-div").hide();
             $("#login-err-msg").hide();
             $("#signup-err-msg").hide();
+            let username = localStorage.getItem("username");
+            let password = localStorage.getItem("password");
+            $("#login-uname").val(username);
+            $("#login-psw").val(password);
         });
     }
 
@@ -60,6 +64,10 @@ class Login{
             let password = $("#signup-psw").val();
             let remember = $("#signup-remember").is(":checked");
 
+            if(remember){
+                localStorage.setItem("username", username);
+                localStorage.setItem("password", password);
+            }
             // post the player details
             $.ajax('/signup', {
                 method: "POST",
@@ -89,6 +97,11 @@ class Login{
             let password = $("#login-psw").val();
             let remember = $("#login-remember").is(":checked");
             let that = this;
+
+            if(remember){
+                localStorage.setItem("username", username);
+                localStorage.setItem("password", password);
+            }
 
             $.ajax('/login', {
                 method: "POST",
