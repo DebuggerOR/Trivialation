@@ -70,7 +70,7 @@ class Login{
                 },
                 success: function(data) {
                     // player returns from server
-                    this.currentPlayer = data;
+                    that.currentPlayer = data;
                     $("#signup-div").hide();
                     $("#login-div").hide();
                 },
@@ -88,6 +88,7 @@ class Login{
             let username = $("#login-uname").val();
             let password = $("#login-psw").val();
             let remember = $("#login-remember").is(":checked");
+            let that = this;
 
             $.ajax('/login', {
                 method: "POST",
@@ -98,7 +99,7 @@ class Login{
                 },
                 success: function(data) {
                     // player returns from server
-                    this.currentPlayer = data;
+                    that.currentPlayer = data;
                     $("#signup-div").hide();
                     $("#login-div").hide();
                 },
