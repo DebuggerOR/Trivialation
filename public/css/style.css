@@ -6,16 +6,21 @@ body {
   background-attachment: fixed;
   margin: 0 auto;
   color: white;
-  padding-top: 100px;
 }
 
 body .background {
-  background-color: rgba(18, 28, 70, 0.651);
+  background-attachment: fixed;
+  background-size: cover;
+  margin: 0 auto;
   height: 100%;
   width: 100%;
   position: absolute;
   top: 0;
   bottom: 0;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  padding-top: 70px;
 }
 
 body .navbar {
@@ -33,11 +38,6 @@ body .navbar i {
 body .navbar .container {
   margin-left: 0;
 }
-
-body .configure-game-container .game-container {
-  padding-top: 50px;
-}
-
 body .configure-game-container .game-container .question-container {
   background-color: rgba(11, 17, 43, 0.952);
   border: 5px solid #ccc;
@@ -69,6 +69,8 @@ body .configure-game-container .game-container .question-container .answers-cont
   font-size: 20px;
   border-radius: 25px;
   border: 2px solid #ccc;
+  transition: background-color 0.5s ease;
+  cursor: pointer;
 }
 
 body .configure-game-container .game-container .question-container .answers-container .answer:hover {
