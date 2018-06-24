@@ -2,12 +2,12 @@
 class Game {
     constructor(login) {
         this.login = login;
-        this.player = login.getCurrentPlayer();
         this.current_question_index = 0;
         this.total_questions = 10;
         this.total_time = 0;
         this.seconds_per_question = 10;
         this.right_answers = 0;
+        this.registerGameEvents();
     }
 
     registerGameEvents() {
@@ -21,12 +21,15 @@ class Game {
 
 
         //START GAME BUTTON CLICK EVENT
-        $container.on('click', '.start-game-btn', function () {
+        $container.on('click', '.start-game-btn',  () =>{
+            this.player = this.login.currentPlayer;
             let $set_game_container = $(this).closest('.set-game-container');
             let t = $set_game_container.find("#trivia_category");
             that.category_id = $set_game_container.find("#trivia_category").val();
             that.category_name = $set_game_container.find("#trivia_category option:selected").text();
             that.difficulty = $set_game_container.find("#trivia_difficulty").val();
+
+            that.player = that.login.currentPlayer;
 
             //if the token is expired (after 6 hours) then generate new token and update the player
            /*  if ((new Date()).getTime() / 1000 - that.player.timeInSeconds > 21600) {
