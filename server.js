@@ -100,3 +100,24 @@ app.post('/game', function (request, response) {
         response.send(savedGame);
     }).catch((err) => console.log(err));
 });
+
+//array of doc for a specific player
+app.get('/array_of_doc/:player', function (request, response){
+    var player= req.params.player;
+    Game.find({player:player})
+        .exec(function (error, result) {
+            if(error) { return console.error(error); }
+            response.send(result);
+        })
+})
+
+//max score
+app.get('/max-score/:player', function(request, response) {
+    var player= req.params.player;
+    Game.findOne({ player: player})
+        .sort('-score')
+        .exec(function (error, result) {
+            if(error) { return console.error(error); }
+            response.send(result.score);
+        });
+});
