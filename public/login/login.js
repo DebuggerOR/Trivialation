@@ -63,6 +63,7 @@ class Login{
             let username = $("#signup-uname").val();
             let password = $("#signup-psw").val();
             let remember = $("#signup-remember").is(":checked");
+            let that = this;
 
             if(remember){
                 localStorage.setItem("username", username);
