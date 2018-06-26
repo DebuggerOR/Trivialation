@@ -1,4 +1,3 @@
-
 class Game {
     constructor(login) {
         this.login = login;
@@ -12,16 +11,19 @@ class Game {
 
     registerGameEvents() {
         let that = this;
-        let $container = $('.configure-game-container');
+       
 
         //populate category array when documents load 
         $(document).ready(function () {
             that.loadConfigureGameHandlebar();
         });
+       
+    }
 
-
-        //START GAME BUTTON CLICK EVENT
-        $container.on('click', '.start-game-btn', function () {
+    registerStartGameClickEvent(){
+        let that = this;
+        let $container = $('.configure-game-container');
+        $('.start-game-btn').on('click', function () {
             that.player = that.login.currentPlayer;
             let $set_game_container = $(this).closest('.set-game-container');
             let t = $set_game_container.find("#trivia_category");
@@ -40,11 +42,7 @@ class Game {
             }
             $container.empty();
             that.getGameAPI();
-        })
-
-        //CLICK ON ANSWER EVENT
-
-
+        });
     }
 
 
@@ -58,6 +56,7 @@ class Game {
             success: (data) => {
                 var theCompiledHtml = Handlebars.templates.set_game(data);
                 $('.configure-game-container').append(theCompiledHtml);
+                this.registerStartGameClickEvent();
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log(textStatus);
@@ -80,6 +79,7 @@ class Game {
         api_url += "&encode=base64";
 
         api_url += "&token=" + this.player.token;
+        console.log(api_url);
 
         $.ajax({
             method: "POST",
@@ -88,14 +88,18 @@ class Game {
             success: (data) => {
                 if (data.response_code != 0) {
                     console.log("error in API result");
+                    $('.configure-game-container').empty();
+                    $('.configure-game-container').text(" ERROR");
                 }
-                console.log(data);
-                this.questions = data.results;
-                this.playGame();
+                else {
+                    this.questions = data.results;
+                    this.playGame();
+                }
 
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log(textStatus);
+
             }
         });
 
@@ -105,7 +109,7 @@ class Game {
         this.displayQuestion(this.questions[this.current_question_index]);
     }
 
-    displayQuestion(q) {
+    displayQuestion(q) {    
         let that = this;
         //decode quesiton from base64
         q.question = atob(q.question);
@@ -128,18 +132,18 @@ class Game {
 
 
         //set the timer for question
-        let downloadTimer = this.setTimer(10);
+        this.downloadTimer = this.setTimer(10);
 
 
         //register event when answer is clicked
         $('.answer').on('click', function () {
-            that.clickedAnswer($(this), downloadTimer);
+            that.clickedAnswer($(this));
 
         });
     }
 
 
-    clickedAnswer($clicked_answer, downloadTimer) {
+    clickedAnswer($clicked_answer) {
         $('.answer').off();
         //if answer is incorrect display in red
         if (!$clicked_answer.hasClass('correct')) {
@@ -155,7 +159,7 @@ class Game {
         this.flashGreen();
         //add to the total how many seconds it took to answer the question
         this.total_time += (this.seconds_per_question - this.timeleft);
-        clearInterval(downloadTimer);
+        clearInterval(this.downloadTimer);
         setTimeout(() => {
             this.onToNextQuestion();
         }, 2000)
@@ -242,6 +246,11 @@ class Game {
             this.final_score = Math.ceil((this.right_answers * (100 / this.total_questions)) +
                 ((this.seconds_per_question - this.avg_speed) * 1.5));
         }
+    }
+
+    quitGame(){
+        clearInterval(this.downloadTimer);
+
     }
 
 }
