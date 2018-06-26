@@ -1,8 +1,10 @@
+import Stat from  "../statistics/stat.js"
+
 class Game {
     constructor(login) {
         this.login = login;
         this.current_question_index = 0;
-        this.total_questions = 10;
+        this.total_questions = 1;
         this.total_time = 0;
         this.seconds_per_question = 10;
         this.right_answers = 0;
@@ -229,7 +231,8 @@ class Game {
             },
             success: function (data) {
                 console.log("successfully added game to db");
-                console.log(data);
+                //console.log(data);
+                new Stat().statCalculation();
             },
             error: function (data) {
                 console.log('Error: ' + data);

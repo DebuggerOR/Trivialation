@@ -92,10 +92,35 @@ let sendPlayerToClient = function(request, response, rememberMeChecked, username
     });
 }
 
+//save to DB
 app.post('/game', function (request, response) {
     let game = request.body;
-    console.log(game);
+    //console.log(game);
     Game.saveGameToDB(game).then((savedGame) => {
         response.send(savedGame);
     }).catch((err) => console.log(err));
 });
+
+
+// all the games played by one player
+app.get('/array-of-doc/:player', function (request, response){
+    var player= req.params.player;
+    Game.find({player:player})
+        .exec(function (error, result) {
+            if(error) { return console.error(error); }
+                    response.send(result);
+        })   
+})
+
+
+    //max score
+app.get('/max-score/:player', function(request, response) {
+    var player= req.params.player;
+    Game.findOne({ player: player})
+   .sort('-score')  
+   .exec(function (error, result) {
+     if(error) { return console.error(error); }
+             response.send(result.score);
+   });
+ }); 
+ 
