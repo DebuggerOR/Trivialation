@@ -218,6 +218,7 @@ class Game {
     endGame() {
         this.avg_speed = Math.ceil(this.total_time / this.total_questions);
         this.calculate_final_score();
+        let that = this;
         $.ajax('/game', {
             method: "POST",
             data: {
@@ -230,6 +231,7 @@ class Game {
                 difficulty: this.difficulty
             },
             success: function (data) {
+                alert("Your score is " + that.right_answers + "/" + that.total_questions);
                 console.log("successfully added game to db");
                 //console.log(data);
                 new Stat().statCalculation();

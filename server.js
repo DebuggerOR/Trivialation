@@ -26,7 +26,8 @@ app.listen(process.env.PORT || SERVER_PORT, () => {
     console.log("Server started on port " + SERVER_PORT);
 });
 
-mongoose.connect("mongodb://trivialation_user:herokoisrael10@ds163700.mlab.com:63700/trivialation" /*|| 'mongodb://localhost/trivialationDB'*/, function () {
+mongoose.connect(process.env.CONNECTION_STRING||'mongodb://localhost/trivialationDB', function () {
+//mongoose.connect("mongodb://trivialation_user:herokoisrael10@ds163700.mlab.com:63700/trivialation" /*|| 'mongodb://localhost/trivialationDB'*/, function () {
     console.log("DB connection established!!!");
 });
 
